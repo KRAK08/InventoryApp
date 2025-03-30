@@ -15,13 +15,15 @@ namespace Inventory.Api.Controllers
         [HttpGet("{id:int}")]
         public virtual async Task<IActionResult> GetAsync(int id)
         {
-            return Ok(await _unitOfWork.GetAsync(id));
+            var data = await _unitOfWork.GetAsync(id);
+            return Ok(data.Result);
         }
 
         [HttpGet]
         public virtual async Task<IActionResult> GetAllAsync()
         {
-            return Ok(await _unitOfWork.GetAllAsync());
+            var list = await _unitOfWork.GetAllAsync();
+            return Ok(list);
         }
 
         [HttpPost]
