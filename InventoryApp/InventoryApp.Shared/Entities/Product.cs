@@ -28,5 +28,9 @@ namespace InventoryApp.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(50, ErrorMessage = "La cantidad máxima de caracteres debe ser {1}.")]
         public string? ImageUrl { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; } = null!;
     }
 }
