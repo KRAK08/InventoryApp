@@ -34,8 +34,8 @@ namespace Inventory.Api.Repositories.Implementations
 
         public override async Task<ActionResult<Category>> GetAsync(int id)
         {
-            var data = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
-            if (data == null)
+            var data = await _context.Categories.Include(p => p.Products).FirstOrDefaultAsync(c => c.Id == id);
+            if (data != null)
             {
                 return new ActionResult<Category>
                 {

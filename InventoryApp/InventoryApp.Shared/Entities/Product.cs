@@ -31,6 +31,6 @@ namespace InventoryApp.Shared.Entities
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; } = null!;
+        public Category? Category { get; set; }
     }
 }

@@ -19,14 +19,22 @@ namespace Inventory.Api.Controllers
         public override async Task<IActionResult> GetAsync(int id)
         {
             var data = await _categoryUnitOfWork.GetAsync(id);
-            return Ok(data.Result);
+            if (data.WasSuccess)
+            {
+                return Ok(data.Result);
+            }
+            return BadRequest(data.Message);
         }
 
         [HttpGet]
         public override async Task<IActionResult> GetAllAsync()
         {
             var list = await _categoryUnitOfWork.GetAllAsync();
-            return Ok(list);
+            if (list.WasSuccess)
+            {
+                return Ok(list.Result);
+            }
+            return BadRequest(list.Message);
         }
     }
 }
